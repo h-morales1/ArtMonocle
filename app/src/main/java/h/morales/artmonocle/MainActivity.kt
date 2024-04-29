@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.content.ContextCompat
+import h.morales.artmonocle.composables.CameraPreviewScreen
 import h.morales.artmonocle.ui.theme.ArtMonocleTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,6 +23,7 @@ class MainActivity : ComponentActivity() {
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
                 // Implement camera related  code
+                setCameraPreview()
             } else {
                 // Camera permission denied (Handle denied operation)
             }
@@ -36,6 +38,7 @@ class MainActivity : ComponentActivity() {
             ) -> {
                 // Camera permission already granted
                 // Implement camera
+                setCameraPreview()
             }
             else -> {
                 cameraPermissionRequest.launch(Manifest.permission.CAMERA)
@@ -50,6 +53,21 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Greeting("Android")
+                }
+            }
+        }
+
+
+    }
+
+    private fun setCameraPreview() {
+        setContent {
+            ArtMonocleTheme {
+                Surface (
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    CameraPreviewScreen()
                 }
             }
         }
