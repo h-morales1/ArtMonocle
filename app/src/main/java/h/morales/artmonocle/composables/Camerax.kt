@@ -40,6 +40,7 @@ fun CameraPreviewScreen() {
     }
     Box(contentAlignment = Alignment.BottomCenter, modifier = Modifier.fillMaxSize()) {
         AndroidView(factory = { previewView }, modifier = Modifier.fillMaxSize())
+        GoldenRuleOverlay()
     }
 }
 
