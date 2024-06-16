@@ -19,7 +19,7 @@ class GoldenNautilusUnitTest {
         assertEquals(gnaut.a, expected_a)
         assertEquals(0f, firstL.ax)
         assertEquals(expected_a, firstL.ay)
-        assertEquals(expected_b, firstL.bx)
+        assertEquals(expected_a, firstL.bx)
         assertEquals(expected_a, firstL.by)
 
         // given entire length of frame, produce first horizontal line
