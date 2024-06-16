@@ -20,4 +20,7 @@ class CalculatorUnitTest {
         val b = Calculator.getB(ab)
         assertEquals(b, 3.4375772f)
     }
+
+    // return an array of Lines that make up
+    // Golden Nautilus
 }
