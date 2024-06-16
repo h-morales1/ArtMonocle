@@ -1,17 +1,17 @@
 package h.morales.artmonocle.utils
 
-class Line {
+class Line(ax: Float = 0f, ay: Float = 0f, bx: Float = 0f, by: Float = 0f) {
     // basically ax,ay => x,y for START
-    private var ax = 0f
-    private var ay = 0f
+    var ax: Float
+    var ay: Float
 
-    private var bx = 0f
-    private var by = 0f
-
-    public fun setAX(yourVal: Float) {
-        ax = yourVal
+    var bx: Float
+    var by: Float
+    init {
+        this.ax = ax
+        this.ay = ay
+        this.bx = bx
+        this.by = by
     }
-    public fun setAY(yourVal: Float) {}
-    public fun setBX() {}
-    public fun setBY() {}
+
 }
