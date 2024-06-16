@@ -5,6 +5,7 @@ import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -20,7 +21,17 @@ import androidx.core.content.ContextCompat
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun CameraPreviewScreen() {
@@ -38,9 +49,30 @@ fun CameraPreviewScreen() {
         cameraProvider.bindToLifecycle(lifecycleOwner, cameraxSelector, preview)
         preview.setSurfaceProvider(previewView.surfaceProvider)
     }
-    Box(contentAlignment = Alignment.BottomCenter, modifier = Modifier.fillMaxSize()) {
-        AndroidView(factory = { previewView }, modifier = Modifier.fillMaxSize())
-        GoldenRuleOverlay()
+
+    Column(modifier = Modifier.fillMaxSize()) {
+
+        Box(contentAlignment = Alignment.BottomCenter, modifier = Modifier
+            .weight(4f)
+            .fillMaxWidth()) {
+            AndroidView(factory = { previewView }, modifier = Modifier.fillMaxSize())
+            GoldenRuleOverlay()
+        }
+        Box(modifier = Modifier
+            .weight(1f)
+            .fillMaxWidth()
+            .background(Color.LightGray), contentAlignment = Alignment.Center) {
+            Row {
+                CamBtn()
+            }
+        }
+    }
+}
+
+@Composable
+fun CamBtn() {
+    Button(onClick = { /*TODO*/ }, shape = CircleShape, modifier = Modifier.size(70.dp), colors = ButtonDefaults.buttonColors(Color.White), border = BorderStroke(2.dp, Color.Red)) {
+
     }
 }
 
