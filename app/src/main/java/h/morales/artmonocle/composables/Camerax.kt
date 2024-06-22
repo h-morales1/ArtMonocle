@@ -19,8 +19,17 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
-import androidx.compose.foundation.Canvas
-import androidx.compose.ui.geometry.Offset
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LargeFloatingActionButton
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun CameraPreviewScreen() {
@@ -38,11 +47,33 @@ fun CameraPreviewScreen() {
         cameraProvider.bindToLifecycle(lifecycleOwner, cameraxSelector, preview)
         preview.setSurfaceProvider(previewView.surfaceProvider)
     }
-    Box(contentAlignment = Alignment.BottomCenter, modifier = Modifier.fillMaxSize()) {
-        AndroidView(factory = { previewView }, modifier = Modifier.fillMaxSize())
+
+    Column(modifier = Modifier.fillMaxSize()) {
+
+        Box(contentAlignment = Alignment.BottomCenter, modifier = Modifier
+            .weight(4f)
+            .fillMaxWidth()) {
+            AndroidView(factory = { previewView }, modifier = Modifier.fillMaxSize())
+            GoldenRuleOverlay()
+        }
+        Box(modifier = Modifier
+            .weight(1f)
+            .fillMaxWidth()
+            .background(Color.DarkGray), contentAlignment = Alignment.Center) {
+            Row {
+                CamBtn()
+            }
+        }
     }
 }
 
+@Composable
+fun CamBtn() {
+    LargeFloatingActionButton(onClick = { /*TODO*/ }, shape = CircleShape, containerColor = Color.White ) {
+        Icon(Icons.Filled.Check, "Take picture", modifier = Modifier.size(50.dp) )
+        
+    }
+}
 private suspend fun Context.getCameraProvider(): ProcessCameraProvider =
     suspendCoroutine { continuation ->
         ProcessCameraProvider.getInstance(this).also { cameraProvider ->
