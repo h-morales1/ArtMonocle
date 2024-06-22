@@ -26,25 +26,27 @@ fun GoldenRuleOverlay() {
         val ha = (hab / fi)
         val hb = (hab - ha)
 
-        drawLine(
+/*        drawLine(
             start = Offset( x = canvasWidth / 2, y = 0f),
             end = Offset( x = canvasWidth / 2, y = canvasHeight),
             color = Color.Red,
-        )
+        )*/
 
         // verticals
 
         drawLine(
             start =  Offset( x = ha, y = 0f),
             end = Offset ( x = ha, y = canvasHeight),
-            color = Color.Red,
+            pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f,10f), 10f),
+            color = Color.Magenta,
             strokeWidth = 10f,
         )
 
         drawLine(
             start = Offset( x = hb, y = 0f),
             end = Offset( x = hb, y = canvasHeight),
-            color = Color.Red,
+            pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f,10f), 10f),
+            color = Color.Magenta,
             strokeWidth = 10f,
         )
 
@@ -68,7 +70,8 @@ fun GoldenRuleOverlay() {
         drawLine(
             start = Offset(x = 0f, y = b),
             end = Offset(x = canvasWidth, y = b),
-            color = Color.Green,
+            pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f,10f), 10f),
+            color = Color.Magenta,
             strokeWidth = 10f,
         )
 
