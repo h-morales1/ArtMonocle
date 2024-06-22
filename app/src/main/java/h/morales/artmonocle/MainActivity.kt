@@ -44,22 +44,7 @@ class MainActivity : ComponentActivity() {
                 cameraPermissionRequest.launch(Manifest.permission.CAMERA)
             }
         }
-
-        setContent {
-            ArtMonocleTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
-        }
-
-
     }
-
     private fun setCameraPreview() {
         setContent {
             ArtMonocleTheme {
@@ -74,18 +59,15 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun CamPreview() {
     ArtMonocleTheme {
-        Greeting("Android")
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            CameraPreviewScreen()
+        }
     }
 }
