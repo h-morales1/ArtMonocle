@@ -5,7 +5,6 @@ import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -20,17 +19,16 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -61,7 +59,7 @@ fun CameraPreviewScreen() {
         Box(modifier = Modifier
             .weight(1f)
             .fillMaxWidth()
-            .background(Color.LightGray), contentAlignment = Alignment.Center) {
+            .background(Color.DarkGray), contentAlignment = Alignment.Center) {
             Row {
                 CamBtn()
             }
@@ -71,11 +69,11 @@ fun CameraPreviewScreen() {
 
 @Composable
 fun CamBtn() {
-    Button(onClick = { /*TODO*/ }, shape = CircleShape, modifier = Modifier.size(70.dp), colors = ButtonDefaults.buttonColors(Color.White), border = BorderStroke(2.dp, Color.Red)) {
-
+    LargeFloatingActionButton(onClick = { /*TODO*/ }, shape = CircleShape, containerColor = Color.White ) {
+        Icon(Icons.Filled.Check, "Take picture", modifier = Modifier.size(50.dp) )
+        
     }
 }
-
 private suspend fun Context.getCameraProvider(): ProcessCameraProvider =
     suspendCoroutine { continuation ->
         ProcessCameraProvider.getInstance(this).also { cameraProvider ->
